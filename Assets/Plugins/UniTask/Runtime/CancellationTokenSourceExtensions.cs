@@ -16,6 +16,10 @@ namespace Cysharp.Threading.Tasks
         static void CancelCancellationTokenSourceState(object state)
         {
             var cts = (CancellationTokenSource)state;
+
+            if (cts.IsCancellationRequested == true)
+                return;
+
             cts.Cancel();
         }
 
