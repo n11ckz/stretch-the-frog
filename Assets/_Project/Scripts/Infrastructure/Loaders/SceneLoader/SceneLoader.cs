@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using System;
 using UnityEngine.SceneManagement;
 
@@ -48,18 +49,21 @@ namespace Project
 
         private async UniTask UnloadActiveSceneAsync(Action onSceneUnloaded)
         {
-            int activeSceneBuildIndex = ActiveScene != null ? ActiveScene.BuildIndex : SceneManager.GetActiveScene().buildIndex;
+            int activeBuildIndex = ActiveScene != null ? ActiveScene.BuildIndex : SceneManager.GetActiveScene().buildIndex;
 
-            await SceneManager.UnloadSceneAsync(activeSceneBuildIndex);
+            await SceneManager.UnloadSceneAsync(activeBuildIndex);
+
+            // TODO: create class that stores tween killing logic in actine scene
+            DOTween.KillAll();
 
             onSceneUnloaded?.Invoke();
         }
 
-        private void SetActiveScene(SceneReference scene)
+        private void SetActiveScene(SceneReference activeScene)
         {
-            Scene activeScene = SceneManager.GetSceneByBuildIndex(scene.BuildIndex);
-            SceneManager.SetActiveScene(activeScene);
-            ActiveScene = scene;
+            Scene scene = SceneManager.GetSceneByBuildIndex(activeScene.BuildIndex);
+            SceneManager.SetActiveScene(scene);
+            ActiveScene = activeScene;
         }
 
         private bool IsSceneValid(SceneReference scene)

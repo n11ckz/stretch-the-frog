@@ -14,28 +14,28 @@ namespace Project
         
         public Direction CurrentDirection => _directionInfo.Current;
 
-        private CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
-        private DirectionInfo _directionInfo = new DirectionInfo();
-
-        private ObstacleSensor _sensor;
+        private ObstacleSensor _obstacleSensor;
         private TraceFactory _traceFactory;
         private CharacterConfig _config;
         private BumpEffect _bumpEffect;
+
+        private CancellationTokenSource _cancellationTokenSource;
+        private DirectionInfo _directionInfo;
         private bool _isMoving;
 
         [Inject]
-        private void Construct(ObstacleSensor sensor, TraceFactory traceFactory, CharacterConfig config)
+        private void Construct(ObstacleSensor obstacleSensor, TraceFactory traceFactory, CharacterConfig config)
         {
-            _sensor = sensor;
+            _obstacleSensor = obstacleSensor;
             _traceFactory = traceFactory;
             _config = config;
         }
 
-        private void Awake() =>
+        private void Awake()
+        {
             _bumpEffect = GetComponent<BumpEffect>();
-
-        private void OnDestroy() =>
-            CancelToken();
+            CreateCancellationTokenSource();
+        }
 
         public void Move(Direction direction)
         {
@@ -44,9 +44,10 @@ namespace Project
             if (CanMove(vectorDirection) == false)
                 return;
 
-            _cancellationTokenSource ??= new CancellationTokenSource();
-            _directionInfo.Current = direction;
+            if (_cancellationTokenSource.IsCancellationRequested == true)
+                CreateCancellationTokenSource();
 
+            _directionInfo.Current = direction;
             MoveAsync(vectorDirection, _cancellationTokenSource.Token).Forget();
         }
 
@@ -60,20 +61,21 @@ namespace Project
         {
             _isMoving = true;
 
-            while (_sensor.HasObstacleAhead(transform.position, direction) == false)
+            while (_obstacleSensor.HasObstacleAhead(transform.position, direction) == false)
             {
                 LeaveTrace();
 
                 Vector3 destination = transform.position + direction;
 
-                await transform.DOMove(destination, _config.MoveDurationPerCell).SetEase(_config.MoveEase).WithCancellation(token);
+                await transform.DOMove(destination, 1.0f / _config.Speed).SetEase(_config.MoveEase).
+                    ToUniTask(TweenCancelBehaviour.CancelAwait, token);
 
                 _directionInfo.Previous = _directionInfo.Current;
                 MovedAt?.Invoke(destination);
 
                 await UniTask.WaitForEndOfFrame(this, token);
             }
-
+            
             _bumpEffect.PlayEffect(direction);
             _isMoving = false;
         }
@@ -84,11 +86,19 @@ namespace Project
             trace.transform.position = transform.position.With(y: trace.PositionOffset.y);
         }
 
+        private void CreateCancellationTokenSource()
+        {
+            _cancellationTokenSource = new CancellationTokenSource();
+            _cancellationTokenSource.RegisterRaiseCancelOnDestroy(gameObject);
+        }
+
         private void CancelToken()
         {
-            _cancellationTokenSource?.Cancel();
-            _cancellationTokenSource?.Dispose();
-            _cancellationTokenSource = null;
+            if (_cancellationTokenSource.IsCancellationRequested == true)
+                return;
+            
+            _cancellationTokenSource.Cancel();
+            _cancellationTokenSource.Dispose();
         }
 
         private bool CanMove(Vector3 direction)
@@ -96,7 +106,7 @@ namespace Project
             if (_isMoving == true)
                 return false;
 
-            bool hasObstacle = _sensor.HasObstacleAhead(transform.position, direction);
+            bool hasObstacle = _obstacleSensor.HasObstacleAhead(transform.position, direction);
 
             if (hasObstacle == true)
                 _bumpEffect.PlaySlimEffect(direction);
