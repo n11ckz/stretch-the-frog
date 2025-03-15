@@ -3,9 +3,9 @@ using Zenject;
 
 namespace Project
 {
-    public class AllCellsOccupiedCondition : ICompleteCondition, IInitializable, IDisposable
+    public class AllCellsOccupiedCondition : ICompletionCondition, IInitializable, IDisposable
     {
-        public event Action<bool> Completed;
+        public event Action<bool> Checked;
 
         private readonly CellMap _cellMap;
         private readonly Character _character;
@@ -17,15 +17,15 @@ namespace Project
         }
 
         public void Initialize() =>
-            _character.Stuck += Complete;
+            _character.Stuck += Check;
 
         public void Dispose() =>
-            _character.Stuck -= Complete;
+            _character.Stuck -= Check;
 
-        private void Complete()
+        private void Check()
         {
             bool isSuccessfully = _cellMap.TotalCellCount == _cellMap.OccupiedCells.Count;
-            Completed?.Invoke(isSuccessfully);
+            Checked?.Invoke(isSuccessfully);
         }
     }
 }

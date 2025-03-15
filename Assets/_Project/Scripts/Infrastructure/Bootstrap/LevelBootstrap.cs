@@ -22,8 +22,9 @@ namespace Project
         private void Start()
         {
             _character.Transform.position = _initialPoint.Position;
+
             _cellMap.Initialize();
-            _level.Start();
+            _level.WaitForCompletion();
         }
     }
 }

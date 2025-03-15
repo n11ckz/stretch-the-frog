@@ -9,9 +9,9 @@ namespace Project
         public override void InstallBindings()
         {
             Container.Bind<ObstacleSensor>().FromNew().AsSingle();
-            Container.Bind<Level>().FromNew().AsSingle();
 
-            Container.BindInterfacesTo<AllCellsOccupiedCondition>().AsSingle();
+            Container.BindInterfacesAndSelfTo<Level>().FromNew().AsSingle();
+            Container.BindInterfacesTo<AllCellsOccupiedCondition>().FromNew().AsSingle();
         }
     }
 }
