@@ -9,7 +9,7 @@ namespace Project
         private const int PrimaryTouchIndex = 0;
         private const int SwipeThreshold = 125;
 
-        public event Action<Direction> OnDirectionReceived;
+        public event Action<Direction> DirectionReceived;
 
         private readonly PauseHandler _pauseHandler;
 
@@ -60,7 +60,7 @@ namespace Project
                 delta.x < 0 ? Direction.Left : Direction.Right :
                 delta.y < 0 ? Direction.Down : Direction.Up;
 
-            OnDirectionReceived?.Invoke(direction);
+            DirectionReceived?.Invoke(direction);
             _isSwiping = false;
         }
 

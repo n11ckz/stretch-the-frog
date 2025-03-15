@@ -28,13 +28,13 @@ namespace Project
         {
             _movement = GetComponent<IMovement>();
 
-            _input.OnDirectionReceived += Move;
+            _input.DirectionReceived += Move;
             _movement.MovedAt += OccupyCell;
         }
 
         private void OnDestroy()
         {
-            _input.OnDirectionReceived -= Move;
+            _input.DirectionReceived -= Move;
             _movement.MovedAt -= OccupyCell;
         }
 

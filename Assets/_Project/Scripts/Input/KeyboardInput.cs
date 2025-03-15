@@ -6,7 +6,7 @@ namespace Project
 {
     public class KeyboardInput : IInput, ITickable
     {
-        public event Action<Direction> OnDirectionReceived;
+        public event Action<Direction> DirectionReceived;
 
         private readonly PauseHandler _pauseHandler;
 
@@ -24,16 +24,16 @@ namespace Project
         private void ReadKeys()
         {
             if (Input.GetKeyDown(KeyCode.LeftArrow) == true)
-                OnDirectionReceived?.Invoke(Direction.Left);
+                DirectionReceived?.Invoke(Direction.Left);
 
             if (Input.GetKeyDown(KeyCode.RightArrow) == true)
-                OnDirectionReceived?.Invoke(Direction.Right);
+                DirectionReceived?.Invoke(Direction.Right);
 
             if (Input.GetKeyDown(KeyCode.UpArrow) == true)
-                OnDirectionReceived?.Invoke(Direction.Up);
+                DirectionReceived?.Invoke(Direction.Up);
 
             if (Input.GetKeyDown(KeyCode.DownArrow) == true)
-                OnDirectionReceived?.Invoke(Direction.Down);
+                DirectionReceived?.Invoke(Direction.Down);
         }
     }
 }
