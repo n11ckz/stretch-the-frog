@@ -11,8 +11,11 @@ namespace Project
         private void Awake()
         {
             _button = GetComponent<Button>();
-            _button.onClick.AddListener(() => Execute());
+            _button.onClick.AddListener(Execute);
         }
+
+        private void OnDestroy() =>
+            _button.onClick.RemoveListener(Execute);
 
         protected abstract void Execute();
     }

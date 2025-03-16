@@ -7,6 +7,8 @@ namespace Project
     public class LoadNextLevelButton : BaseQuickAccessButton
     {
         [SerializeField] private MenuDisplay _menuDisplay;
+        [SerializeField] private LevelSelectionButtonsHolder _selectionButtonsHolder;
+        [SerializeField] private CompletionPanel _completionPanel;
 
         private SceneLoader _sceneLoader;
         private LevelSequence _levelSequence;
@@ -20,8 +22,15 @@ namespace Project
 
         protected override void Execute()
         {
-            SceneReference levelReference = FindNextLevelInSequence();
-            _sceneLoader.LoadActiveSceneAsync(levelReference, () => _menuDisplay.HideImmediately()).Forget();
+            SceneReference levelSceneReference = FindNextLevelInSequence();
+            _sceneLoader.LoadActiveSceneAsync(levelSceneReference, () => HideAllMenu()).Forget();
+        }
+
+        private void HideAllMenu()
+        {
+            _selectionButtonsHolder.gameObject.Activate();
+            _completionPanel.gameObject.Deactivate();
+            _menuDisplay.HideImmediately();
         }
 
         private SceneReference FindNextLevelInSequence()
