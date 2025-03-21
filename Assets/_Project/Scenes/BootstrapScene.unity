@@ -21,8 +21,8 @@ RenderSettings:
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 1, g: 1, b: 1, a: 1}
-  m_AmbientEquatorColor: {r: 0.02745098, g: 0.03137255, b: 0.03137255, a: 1}
-  m_AmbientGroundColor: {r: 0.023529412, g: 0.019607844, b: 0.015686275, a: 1}
+  m_AmbientEquatorColor: {r: 0, g: 0, b: 0, a: 1}
+  m_AmbientGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
@@ -153,10 +153,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _menuScene:
-    <Name>k__BackingField: MenuScene
+    <Name>k__BackingField: OldMenuScene
     <BuildIndex>k__BackingField: 1
     _sceneAsset: {fileID: 102900000, guid: c00e4c4e424d9804d81eb0094625ba89, type: 3}
-  _levelSequence: {fileID: 11400000, guid: 1a4a93653fbddef4e86c0814ee4c97b3, type: 2}
 --- !u!4 &303082375
 Transform:
   m_ObjectHideFlags: 0

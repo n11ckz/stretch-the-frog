@@ -20,13 +20,13 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.9858491, g: 0.99490553, b: 1, a: 1}
-  m_AmbientEquatorColor: {r: 0.0285, g: 0.03125, b: 0.03325, a: 1}
-  m_AmbientGroundColor: {r: 0.0235, g: 0.0215, b: 0.0175, a: 1}
+  m_AmbientSkyColor: {r: 1, g: 1, b: 1, a: 1}
+  m_AmbientEquatorColor: {r: 0, g: 0, b: 0, a: 1}
+  m_AmbientGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.5241189, g: 0.58404243, b: 0.735849, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -1345,8 +1345,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6767d65c8aeee7b4d8c32633e0b2d7e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _winCondition: 0
-  _finishCell: {fileID: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
