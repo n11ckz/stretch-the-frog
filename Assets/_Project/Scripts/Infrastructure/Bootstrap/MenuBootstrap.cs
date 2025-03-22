@@ -4,14 +4,15 @@ namespace Project
 {
     public class MenuBootstrap : MonoBehaviour
     {
-        [SerializeField] private MenuDisplay _menuDisplay;
+        [SerializeField] private ScrollableMenu _scrollableMenu;
         [SerializeField] private LevelSelectionButtonsHolder _selectionButtonsHolder;
 
         private void Start()
         {
             _selectionButtonsHolder.Initialize();
+            _scrollableMenu.Initialize();
 
-            _menuDisplay.HideImmediately();
+            _scrollableMenu.Hide(true);
         }
     }
 }

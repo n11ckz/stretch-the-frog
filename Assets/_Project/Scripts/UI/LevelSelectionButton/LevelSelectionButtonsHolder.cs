@@ -9,7 +9,7 @@ namespace Project
     public class LevelSelectionButtonsHolder : MonoBehaviour, IProgressListener
     {
         [SerializeField] private RectTransform _buttonsParent;
-        [SerializeField] private MenuDisplay _menuDisplay;
+        [SerializeField] private ScrollableMenu _scrollableMenu;
         
         private List<LevelSelectionButton> _selectionButtons = new List<LevelSelectionButton>();
 
@@ -71,7 +71,7 @@ namespace Project
             if (selectionButton.State == LevelSelectionButtonState.Locked)
                 return;
 
-            _sceneLoader.LoadActiveSceneAsync(selectionButton.LevelToLoad, () => _menuDisplay.HideImmediately()).Forget();
+            _sceneLoader.LoadActiveSceneAsync(selectionButton.LevelToLoad, () => _scrollableMenu.Hide(true)).Forget();
         }
 
         private void FollowFirstLockedSelectionButton()

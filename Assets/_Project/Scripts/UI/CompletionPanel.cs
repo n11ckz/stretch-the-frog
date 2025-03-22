@@ -7,11 +7,9 @@ namespace Project
 {
     public class CompletionPanel : MonoBehaviour
     {
-        [SerializeField] private MenuDisplay _menuDisplay;
-        [SerializeField] private LevelSelectionButtonsHolder _selectionButtonsHolder;
+        [SerializeField] private ScrollableMenu _scrollableMenu;
 
         private BetweenScenesMediator _betweenScenesMediator;
-
         private Action<bool> _cachedShowAction;
 
         [Inject]
@@ -37,10 +35,7 @@ namespace Project
         {
             await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
 
-            _selectionButtonsHolder.gameObject.Deactivate();
-            gameObject.Activate();
-
-            _menuDisplay.Show().Forget();
+            _scrollableMenu.OpenTab(ScrollableTabType.Tab2);
         }
     }
 }

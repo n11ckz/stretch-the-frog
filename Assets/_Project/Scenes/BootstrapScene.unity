@@ -153,9 +153,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _menuScene:
-    <Name>k__BackingField: OldMenuScene
+    <Name>k__BackingField: MenuScene
     <BuildIndex>k__BackingField: 1
-    _sceneAsset: {fileID: 102900000, guid: c00e4c4e424d9804d81eb0094625ba89, type: 3}
+    _sceneAsset: {fileID: 102900000, guid: 25484a29cc5921e4c91ae25c479c0300, type: 3}
 --- !u!4 &303082375
 Transform:
   m_ObjectHideFlags: 0

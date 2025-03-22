@@ -5,7 +5,8 @@ using Zenject;
 
 namespace Project
 {
-    public class MenuDisplay : MonoBehaviour
+    [RequireComponent(typeof(ScrollableMenu), typeof(CanvasGroup))]
+    public class ScrollableMenuDisplay : MonoBehaviour
     {
         [SerializeField] private CanvasGroup _canvasGroup;
 
@@ -13,11 +14,10 @@ namespace Project
         [SerializeField] private Vector2 _anchoredOffsetPosition;
         [SerializeField] private Ease _ease;
 
-        public bool IsHidden => gameObject.activeInHierarchy == false;
-
         private bool IsAnimationPlaying => _animationSequence != null && _animationSequence.IsActive() == true;
 
         private PauseHandler _pauseHandler;
+
         private RectTransform _rectTransform;
         private Sequence _animationSequence;
         private Vector2 _initialAnchoredPosition;
@@ -26,7 +26,7 @@ namespace Project
         private void Construct(PauseHandler pauseHandler) =>
             _pauseHandler = pauseHandler;
 
-        private void Awake()
+        public void Initialize()
         {
             _rectTransform = transform as RectTransform;
 
