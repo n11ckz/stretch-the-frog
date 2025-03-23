@@ -9,7 +9,7 @@ namespace Project
     public class LevelSelectionButtonsHolder : MonoBehaviour, IProgressListener
     {
         [SerializeField] private RectTransform _buttonsParent;
-        [SerializeField] private ScrollableMenu _scrollableMenu;
+        [SerializeField] private ScrollMenu _scrollableMenu;
         
         private List<LevelSelectionButton> _selectionButtons = new List<LevelSelectionButton>();
 

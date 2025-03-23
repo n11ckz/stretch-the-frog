@@ -4,18 +4,14 @@ namespace Project
 {
     public class MenuDisplayButton : BaseQuickAccessButton
     {
-        [SerializeField] private ScrollableMenu _scrollableMenu;
+        [SerializeField] private ScrollMenu _scrollMenu;
 
         protected override void Execute()
         {
-            if (_scrollableMenu.gameObject.activeInHierarchy == false)
-            {
-                _scrollableMenu.OpenTab();
-            }
+            if (_scrollMenu.IsHidden == true)
+                _scrollMenu.OpenTab();
             else
-            {
-                _scrollableMenu.Hide(false);
-            }
+                _scrollMenu.Hide();
         }
     }
 }

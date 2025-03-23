@@ -5,8 +5,8 @@ using Zenject;
 
 namespace Project
 {
-    [RequireComponent(typeof(ScrollableMenu), typeof(CanvasGroup))]
-    public class ScrollableMenuDisplay : MonoBehaviour
+    [RequireComponent(typeof(ScrollMenu), typeof(CanvasGroup))]
+    public class ScrollMenuDisplay : MonoBehaviour
     {
         [SerializeField] private CanvasGroup _canvasGroup;
 
@@ -14,10 +14,7 @@ namespace Project
         [SerializeField] private Vector2 _anchoredOffsetPosition;
         [SerializeField] private Ease _ease;
 
-        private bool IsAnimationPlaying => _animationSequence != null && _animationSequence.IsActive() == true;
-
         private PauseHandler _pauseHandler;
-
         private RectTransform _rectTransform;
         private Sequence _animationSequence;
         private Vector2 _initialAnchoredPosition;
@@ -29,18 +26,15 @@ namespace Project
         public void Initialize()
         {
             _rectTransform = transform as RectTransform;
-
             _initialAnchoredPosition = _rectTransform.anchoredPosition;
             _canvasGroup.alpha = 0.0f;
         }
 
         public async UniTaskVoid Show()
         {
-            if (IsAnimationPlaying == true)
-                _animationSequence.Complete();
-
-            gameObject.Activate();
+            _animationSequence?.Complete();
             _pauseHandler.Pause();
+            gameObject.Activate();
 
             _animationSequence = DOTween.Sequence().
                 Join(_rectTransform.DOAnchorPos(_initialAnchoredPosition, _totalDuration)).
@@ -53,33 +47,20 @@ namespace Project
             _canvasGroup.interactable = true;
         }
 
-        public async UniTaskVoid Hide()
+        public async UniTaskVoid Hide(bool isImmediate)
         {
-            if (IsAnimationPlaying == true)
-                _animationSequence.Complete();
-
-            _canvasGroup.interactable = false;
+            _animationSequence?.Complete();
             _pauseHandler.Resume();
+            _canvasGroup.interactable = false;
 
+            float sequenceDuration = isImmediate == true ? 0.0f : _totalDuration;
             _animationSequence = DOTween.Sequence().
-                Join(_rectTransform.DOAnchorPos(_anchoredOffsetPosition, _totalDuration)).
-                Join(_canvasGroup.DOFade(0.0f, _totalDuration)).
+                Join(_rectTransform.DOAnchorPos(_anchoredOffsetPosition, sequenceDuration)).
+                Join(_canvasGroup.DOFade(0.0f, sequenceDuration)).
                 SetEase(_ease).
                 SetUpdate(true);
 
             await _animationSequence.ToUniTask();
-
-            gameObject.Deactivate();
-        }
-
-        public void HideImmediately()
-        {
-            if (IsAnimationPlaying == true)
-                _animationSequence.Kill();
-
-            _rectTransform.anchoredPosition = _anchoredOffsetPosition;
-            _canvasGroup.alpha = 0.0f;
-            _pauseHandler.Resume();
 
             gameObject.Deactivate();
         }

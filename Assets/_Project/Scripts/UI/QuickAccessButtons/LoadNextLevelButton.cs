@@ -6,7 +6,8 @@ namespace Project
 {
     public class LoadNextLevelButton : BaseQuickAccessButton
     {
-        [SerializeField] private ScrollableMenu _scrollableMenu;
+        [SerializeField] private CompletionTabHandler _completionTabHandler;
+        [SerializeField] private ScrollMenu _scrollMenu;
 
         private SceneLoader _sceneLoader;
         private LevelSequence _levelSequence;
@@ -21,7 +22,11 @@ namespace Project
         protected override void Execute()
         {
             SceneReference levelSceneReference = FindNextLevelInSequence();
-            _sceneLoader.LoadActiveSceneAsync(levelSceneReference, () => _scrollableMenu.Hide(true)).Forget();
+            _sceneLoader.LoadActiveSceneAsync(levelSceneReference, () =>
+            {
+                _completionTabHandler.DisableTab();
+                _scrollMenu.Hide(true);
+            }).Forget();
         }
 
         private SceneReference FindNextLevelInSequence()

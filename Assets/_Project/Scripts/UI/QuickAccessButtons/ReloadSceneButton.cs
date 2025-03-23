@@ -6,7 +6,7 @@ namespace Project
 {
     public class ReloadSceneButton : BaseQuickAccessButton
     {
-        [SerializeField] private ScrollableMenu _scrollableMenu;
+        [SerializeField] private ScrollMenu _scrollableMenu;
 
         private SceneLoader _sceneLoader;
 
