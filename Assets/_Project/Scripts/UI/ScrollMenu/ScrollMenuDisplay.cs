@@ -34,7 +34,7 @@ namespace Project
         {
             _animationSequence?.Complete();
             _pauseHandler.Pause();
-            gameObject.Activate();
+            gameObject.Enable();
 
             _animationSequence = DOTween.Sequence().
                 Join(_rectTransform.DOAnchorPos(_initialAnchoredPosition, _totalDuration)).
@@ -62,7 +62,7 @@ namespace Project
 
             await _animationSequence.ToUniTask();
 
-            gameObject.Deactivate();
+            gameObject.Disable();
         }
     }
 }

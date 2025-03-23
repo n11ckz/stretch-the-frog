@@ -35,7 +35,7 @@ namespace Project
             _scrollMenu.RemoveTab(_tab.Type, (tab) =>
             {
                 tab.transform.SetParent(transform);
-                tab.gameObject.Deactivate();
+                tab.gameObject.Disable();
             });
         }
 
@@ -43,7 +43,7 @@ namespace Project
         {
             await UniTask.Delay(TimeSpan.FromSeconds(0.6f));
 
-            _tab.gameObject.Activate();
+            _tab.gameObject.Enable();
             _scrollMenu.InsertTab(_initialChildTabIndex, _tab);
             _scrollMenu.OpenTab(_tab.Type);
         }

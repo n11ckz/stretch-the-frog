@@ -1,4 +1,3 @@
-using Alchemy.Inspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,7 +8,6 @@ namespace Project
     [RequireComponent(typeof(Button))]
     public class LevelSelectionButton : MonoBehaviour
     {
-        [Title("Components")]
         [SerializeField] private Image _backgroundImage;
         [SerializeField] private Image _lockImage;
         [SerializeField] private TMP_Text _levelIndexText;
@@ -37,8 +35,8 @@ namespace Project
             if (State != LevelSelectionButtonState.Locked)
                 return;
 
-            _lockImage.gameObject.Deactivate();
-            _levelIndexText.gameObject.Activate();
+            _lockImage.gameObject.Disable();
+            _levelIndexText.gameObject.Enable();
 
             ChangeState(LevelSelectionButtonState.Unlocked);
         }

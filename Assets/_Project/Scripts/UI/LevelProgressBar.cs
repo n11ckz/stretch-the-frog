@@ -1,4 +1,3 @@
-using Alchemy.Inspector;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -10,11 +9,9 @@ namespace Project
     [SelectionBase]
     public class LevelProgressBar : MonoBehaviour, IPauseListener
     {
-        [Title("Components")]
         [SerializeField] private Image _barMaskImage;
         [SerializeField] private TMP_Text _progressText;
 
-        [Title("Animation Settings")]
         [SerializeField, Range(0.0f, 0.5f)] float _fillDuration;
         [SerializeField, Range(0.0f, 0.5f)] float _hideAndShowDuration;
         [SerializeField] private Vector2 _anchoredOffset;
@@ -48,10 +45,14 @@ namespace Project
         }
 
         public void Pause() =>
-            _rectTransform.DOAnchorPos(_anchoredOffset, _hideAndShowDuration).SetEase(_ease).SetUpdate(true);
+            _rectTransform.DOAnchorPos(_anchoredOffset, _hideAndShowDuration).
+            SetEase(_ease).
+            SetUpdate(true);
 
         public void Resume() =>
-            _rectTransform.DOAnchorPos(_initialAnchoredPosition, _hideAndShowDuration).SetEase(_ease).SetUpdate(true);
+            _rectTransform.DOAnchorPos(_initialAnchoredPosition, _hideAndShowDuration).
+            SetEase(_ease).
+            SetUpdate(true);
 
         private void FillProgressBar()
         {
@@ -59,7 +60,8 @@ namespace Project
                 return;
 
             float endValue = (float)_cellMap.OccupiedCells.Count / _cellMap.TotalCellCount;
-            DOTween.To(() => _barMaskImage.fillAmount, (progress) => UpdateProgressValues(progress), endValue, _fillDuration).SetEase(_ease);
+            DOTween.To(() => _barMaskImage.fillAmount, (progress) => UpdateProgressValues(progress), endValue, _fillDuration).
+                SetEase(_ease);
         }
 
         private void InitializeValues()

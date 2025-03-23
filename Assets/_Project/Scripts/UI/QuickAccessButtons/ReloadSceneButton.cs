@@ -6,7 +6,7 @@ namespace Project
 {
     public class ReloadSceneButton : BaseQuickAccessButton
     {
-        [SerializeField] private ScrollMenu _scrollableMenu;
+        [SerializeField] private ScrollMenu _scrollMenu;
 
         private SceneLoader _sceneLoader;
 
@@ -19,10 +19,10 @@ namespace Project
 
         private void HideMenu()
         {
-            if (_scrollableMenu.gameObject.activeInHierarchy == false)
+            if (_scrollMenu.IsHidden == true)
                 return;
 
-            _scrollableMenu.Hide(true);
+            _scrollMenu.Hide(true);
         }
     }
 }
