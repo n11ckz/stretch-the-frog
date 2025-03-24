@@ -1,4 +1,3 @@
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -6,27 +5,18 @@ namespace Project
 {
     public class LoadNextLevelButton : BaseQuickAccessButton
     {
-        [SerializeField] private CompletionTabHandler _completionTabHandler;
-        [SerializeField] private ScrollMenu _scrollMenu;
+        [SerializeField] private SceneLoaderFacade _sceneLoaderFacade;
 
-        private SceneLoader _sceneLoader;
         private LevelSequence _levelSequence;
 
         [Inject]
-        private void Construct(SceneLoader sceneLoader, LevelSequence levelSequence)
-        {
-            _sceneLoader = sceneLoader;
+        private void Construct(LevelSequence levelSequence) =>
             _levelSequence = levelSequence;
-        }
 
         protected override void Execute()
         {
-            SceneReference levelSceneReference = FindNextLevelInSequence();
-            _sceneLoader.LoadActiveSceneAsync(levelSceneReference, () =>
-            {
-                _completionTabHandler.DisableTab();
-                _scrollMenu.Hide(true);
-            }).Forget();
+            SceneReference findedLevel = FindNextLevelInSequence();
+            _sceneLoaderFacade.LoadActiveScene(findedLevel);
         }
 
         private SceneReference FindNextLevelInSequence()
@@ -35,7 +25,7 @@ namespace Project
 
             for (int i = 0; i < levelCount; i++)
             {
-                if (_levelSequence.LevelReferences[i].BuildIndex != _sceneLoader.ActiveScene.BuildIndex)
+                if (_levelSequence.LevelReferences[i].BuildIndex != _sceneLoaderFacade.ActiveSceneBuildIndex)
                     continue;
 
                 return _levelSequence.LevelReferences[(i + 1) % levelCount];

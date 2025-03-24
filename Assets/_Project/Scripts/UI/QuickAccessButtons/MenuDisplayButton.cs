@@ -9,9 +9,12 @@ namespace Project
         protected override void Execute()
         {
             if (_scrollMenu.IsHidden == true)
+            {
                 _scrollMenu.OpenTab();
-            else
-                _scrollMenu.Hide();
+                return;
+            }
+
+            _scrollMenu.Hide();
         }
     }
 }

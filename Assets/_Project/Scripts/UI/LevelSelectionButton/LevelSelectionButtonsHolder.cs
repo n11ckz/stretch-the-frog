@@ -1,4 +1,3 @@
-using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -9,20 +8,18 @@ namespace Project
     public class LevelSelectionButtonsHolder : MonoBehaviour, IProgressListener
     {
         [SerializeField] private RectTransform _buttonsParent;
-        [SerializeField] private ScrollMenu _scrollMenu;
+        [SerializeField] private SceneLoaderFacade _sceneLoaderFacade;
         
         private List<LevelSelectionButton> _selectionButtons = new List<LevelSelectionButton>();
 
         private LevelSelectionButtonFactory _buttonFactory;
-        private SceneLoader _sceneLoader;
         private SavedProgressStorage _progressStorage;
         private LevelSelectionButton _followedSelectionButton;
 
         [Inject]
-        private void Construct(LevelSelectionButtonFactory buttonFactory, SceneLoader sceneLoader, SavedProgressStorage progressStorage)
+        private void Construct(LevelSelectionButtonFactory buttonFactory, SavedProgressStorage progressStorage)
         {
             _buttonFactory = buttonFactory;
-            _sceneLoader = sceneLoader;
             _progressStorage = progressStorage;
         }
 
@@ -59,7 +56,7 @@ namespace Project
 
         public void Save(SavedProgress progress)
         {
-            int activeSceneBuildIndex = _sceneLoader.ActiveScene.BuildIndex;
+            int activeSceneBuildIndex = _sceneLoaderFacade.ActiveSceneBuildIndex;
             progress.UnlockedSceneBuildIndexes.Add(activeSceneBuildIndex);
 
             if (_followedSelectionButton.LevelToLoad.BuildIndex == activeSceneBuildIndex)
@@ -71,7 +68,7 @@ namespace Project
             if (selectionButton.State == LevelSelectionButtonState.Locked)
                 return;
 
-            _sceneLoader.LoadActiveSceneAsync(selectionButton.LevelToLoad, () => _scrollMenu.Hide(true)).Forget();
+            _sceneLoaderFacade.LoadActiveScene(selectionButton.LevelToLoad);
         }
 
         private void FollowFirstLockedSelectionButton()

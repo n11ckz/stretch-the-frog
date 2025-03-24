@@ -51,13 +51,20 @@ namespace Project
 
             int findedTabIndex = _tabs.IndexOf(findedTab);
             _rect.horizontalNormalizedPosition = findedTabIndex / ((float)TabsCount - 1);
-            _display.Show().Forget();
+
+            if (IsHidden == true)
+                _display.Show().Forget();
 
             SetTabIndex(findedTabIndex);
         }
 
-        public void Hide(bool isImmediate = false) =>
+        public void Hide(bool isImmediate = false)
+        {
+            if (IsHidden == true)
+                return;
+
             _display.Hide(isImmediate).Forget();
+        }
 
         public void ScrollToTab(int targetTabIndex)
         {
