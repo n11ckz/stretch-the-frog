@@ -8,11 +8,11 @@ namespace Project
     public class CompletionTabHandler : MonoBehaviour
     {
         [SerializeField] private ScrollMenu _scrollMenu;
-        [SerializeField] private ScrollableTab _tab;
+        [SerializeField] private CompletionTab _tab;
 
         private BetweenScenesMediator _betweenScenesMediator;
         private Action<bool> _cachedShowAction;
-        private int _initialChildTabIndex;
+        private int _childTabIndex;
 
         [Inject]
         private void Construct(BetweenScenesMediator betweenScenesMediator) =>
@@ -25,7 +25,7 @@ namespace Project
         {
             _cachedShowAction = (isSuccessfully) => ShowAsync(isSuccessfully).Forget();
             _betweenScenesMediator.LevelCompleted += _cachedShowAction;
-            _initialChildTabIndex = _tab.transform.GetSiblingIndex();
+            _childTabIndex = _tab.transform.GetSiblingIndex();
 
             DisableTab();
         }
@@ -43,8 +43,8 @@ namespace Project
         {
             await UniTask.Delay(TimeSpan.FromSeconds(0.6f));
 
-            _tab.gameObject.Enable();
-            _scrollMenu.InsertTab(_initialChildTabIndex, _tab);
+            _tab.EnableSetup(isSuccessfully);
+            _scrollMenu.InsertTab(_childTabIndex, _tab);
             _scrollMenu.OpenTab(_tab.Type);
         }
     }
