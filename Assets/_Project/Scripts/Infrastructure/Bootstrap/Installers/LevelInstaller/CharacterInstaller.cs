@@ -3,6 +3,7 @@ using Zenject;
 
 namespace Project
 {
+    [RequireComponent(typeof(LevelInstaller))]
     public class CharacterInstaller : MonoInstaller
     {
         [SerializeField] private Character _characterPrefab;

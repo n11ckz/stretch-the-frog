@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -8,17 +9,19 @@ namespace Project
     public class LevelSelectionButtonsHolder : MonoBehaviour, IProgressListener
     {
         [SerializeField] private RectTransform _buttonsParent;
-        [SerializeField] private SceneLoaderFacade _sceneLoaderFacade;
+        [SerializeField] private MenuResetter _menuResetter;
         
         private List<LevelSelectionButton> _selectionButtons = new List<LevelSelectionButton>();
 
+        private SceneLoader _sceneLoader;
         private LevelSelectionButtonFactory _buttonFactory;
         private SavedProgressStorage _progressStorage;
         private LevelSelectionButton _followedSelectionButton;
 
         [Inject]
-        private void Construct(LevelSelectionButtonFactory buttonFactory, SavedProgressStorage progressStorage)
+        private void Construct(SceneLoader sceneLoader, LevelSelectionButtonFactory buttonFactory, SavedProgressStorage progressStorage)
         {
+            _sceneLoader = sceneLoader;
             _buttonFactory = buttonFactory;
             _progressStorage = progressStorage;
         }
@@ -56,7 +59,7 @@ namespace Project
 
         public void Save(SavedProgress progress)
         {
-            int activeSceneBuildIndex = _sceneLoaderFacade.ActiveSceneBuildIndex;
+            int activeSceneBuildIndex = _sceneLoader.ActiveScene.BuildIndex;
             progress.UnlockedSceneBuildIndexes.Add(activeSceneBuildIndex);
 
             if (_followedSelectionButton.LevelToLoad.BuildIndex == activeSceneBuildIndex)
@@ -68,7 +71,7 @@ namespace Project
             if (selectionButton.State == LevelSelectionButtonState.Locked)
                 return;
 
-            _sceneLoaderFacade.LoadActiveScene(selectionButton.LevelToLoad);
+            _sceneLoader.LoadActiveSceneAsync(selectionButton.LevelToLoad, () => _menuResetter.ResetElements()).Forget();
         }
 
         private void FollowFirstLockedSelectionButton()

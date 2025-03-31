@@ -3,6 +3,7 @@ using Zenject;
 
 namespace Project
 {
+    [RequireComponent(typeof(LevelInstaller))]
     public class CellsInstaller : MonoInstaller
     {
         [SerializeField] private Transform _cellParent;
