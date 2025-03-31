@@ -40,7 +40,9 @@ namespace Project
         public void OnEndDrag(PointerEventData eventData)
         {
             float delta = eventData.position.x - eventData.pressPosition.x;
-            int targetTabIndex = Mathf.Abs(delta) > _swipeThreshold ? OpenedTabIndex - (int)Mathf.Sign(delta) : OpenedTabIndex;
+            int targetTabIndex = Mathf.Abs(delta) > _swipeThreshold * _layout.WidthRatio ?
+                OpenedTabIndex - (int)Mathf.Sign(delta) : OpenedTabIndex;
+
             ScrollToTab(targetTabIndex);
         }
 

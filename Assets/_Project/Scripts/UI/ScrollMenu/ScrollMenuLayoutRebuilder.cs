@@ -6,6 +6,9 @@ namespace Project
     public class ScrollMenuLayoutRebuilder : MonoBehaviour
     {
         [SerializeField] private RectTransform _content;
+        [SerializeField, Min(0)] private int _preferredWidth;
+
+        public float WidthRatio => (float)Screen.width / _preferredWidth;
 
         private RectTransform _rectTransform;
 
