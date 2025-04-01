@@ -1,3 +1,4 @@
+using Coffee.UIExtensions;
 using Cysharp.Threading.Tasks;
 using System;
 using UnityEngine;
@@ -9,6 +10,7 @@ namespace Project
     {
         [SerializeField] private ScrollMenu _scrollMenu;
         [SerializeField] private CompletionTab _tab;
+        [SerializeField] private UIParticle _confettiVfx;
 
         private BetweenScenesMediator _betweenScenesMediator;
         private Action<bool> _cachedShowAction;
@@ -32,6 +34,7 @@ namespace Project
 
         public void DisableTab()
         {
+            _confettiVfx.Stop();
             _scrollMenu.RemoveTab(_tab.Type, (tab) =>
             {
                 tab.transform.SetParent(transform);
@@ -46,6 +49,7 @@ namespace Project
             _tab.EnableSetup(isSuccessfully);
             _scrollMenu.InsertTab(_childTabIndex, _tab);
             _scrollMenu.OpenTab(_tab.Type);
+            _confettiVfx.Play();
         }
     }
 }

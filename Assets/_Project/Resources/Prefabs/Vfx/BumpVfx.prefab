@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 508843118104282262}
   - component: {fileID: 7419163185495704430}
   m_Layer: 0
-  m_Name: BumpVFX
+  m_Name: BumpVfx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
