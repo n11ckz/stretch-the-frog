@@ -2,7 +2,7 @@ namespace Project
 {
     public interface IProgressListener
     {
-        public void Load(SavedProgress progress);
-        public void Save(SavedProgress progress);
+        public void Load(Progress progress);
+        public void Save(Progress progress);
     }
 }

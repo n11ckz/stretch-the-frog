@@ -28,7 +28,7 @@ namespace Project
 
             // TODO: remove it later
             Container.BindInterfacesAndSelfTo<LevelSelectionButtonFactory>().FromNew().AsSingle();
-            Container.Bind<SavedProgressStorage>().FromNew().AsSingle();
+            Container.Bind<ProgressStorage>().FromNew().AsSingle();
         }
     }
 }

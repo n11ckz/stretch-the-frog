@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Project
 {
-    public class SavedProgress
+    public class Progress
     {
         public HashSet<int> UnlockedSceneBuildIndexes { get; set; }
     }

@@ -10,10 +10,10 @@ namespace Project
 
         private SceneLoader _sceneLoader;
         private LevelSequence _levelSequence;
-        private SavedProgressStorage _progressStorage;
+        private ProgressStorage _progressStorage;
 
         [Inject]
-        private void Construct(SceneLoader sceneLoader, LevelSequence levelSequence, SavedProgressStorage progressStorage)
+        private void Construct(SceneLoader sceneLoader, LevelSequence levelSequence, ProgressStorage progressStorage)
         {
             _sceneLoader = sceneLoader;
             _levelSequence = levelSequence;

@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 namespace Project
 {
@@ -7,11 +6,11 @@ namespace Project
     {
         private readonly ICompletionCondition _completionCondition;
         private readonly BetweenScenesMediator _betweenScenesMediator;
-        private readonly SavedProgressStorage _progressStorage;
+        private readonly ProgressStorage _progressStorage;
 
         private bool _isDisposed;
 
-        public Level(ICompletionCondition completionCondition, BetweenScenesMediator betweenScenesMediator, SavedProgressStorage progressStorage)
+        public Level(ICompletionCondition completionCondition, BetweenScenesMediator betweenScenesMediator, ProgressStorage progressStorage)
         {
             _completionCondition = completionCondition;
             _betweenScenesMediator = betweenScenesMediator;

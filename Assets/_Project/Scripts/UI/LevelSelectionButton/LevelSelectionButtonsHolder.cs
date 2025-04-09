@@ -15,11 +15,11 @@ namespace Project
 
         private SceneLoader _sceneLoader;
         private LevelSelectionButtonFactory _buttonFactory;
-        private SavedProgressStorage _progressStorage;
+        private ProgressStorage _progressStorage;
         private LevelSelectionButton _followedSelectionButton;
 
         [Inject]
-        private void Construct(SceneLoader sceneLoader, LevelSelectionButtonFactory buttonFactory, SavedProgressStorage progressStorage)
+        private void Construct(SceneLoader sceneLoader, LevelSelectionButtonFactory buttonFactory, ProgressStorage progressStorage)
         {
             _sceneLoader = sceneLoader;
             _buttonFactory = buttonFactory;
@@ -42,7 +42,7 @@ namespace Project
             }
         }
 
-        public void Load(SavedProgress progress)
+        public void Load(Progress progress)
         {
             foreach (LevelSelectionButton selectionButton in _selectionButtons)
             {
@@ -57,12 +57,12 @@ namespace Project
             FollowFirstLockedSelectionButton();
         }
 
-        public void Save(SavedProgress progress)
+        public void Save(Progress progress)
         {
             int activeSceneBuildIndex = _sceneLoader.ActiveScene.BuildIndex;
             progress.UnlockedSceneBuildIndexes.Add(activeSceneBuildIndex);
 
-            if (_followedSelectionButton.LevelToLoad.BuildIndex == activeSceneBuildIndex)
+            if (_followedSelectionButton != null && _followedSelectionButton.LevelToLoad.BuildIndex == activeSceneBuildIndex)
                 FollowFirstLockedSelectionButton();
         }
 

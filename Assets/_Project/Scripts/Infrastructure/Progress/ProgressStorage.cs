@@ -2,24 +2,27 @@ using System.Collections.Generic;
 
 namespace Project
 {
-    public class SavedProgressStorage
+    public class ProgressStorage
     {
+        private readonly ISaveStrategy _saveStrategy = new SaveInPrefsStrategy();
         private readonly List<IProgressListener> _listeners = new List<IProgressListener>();
-        
-        public SavedProgress Progress { get; private set; }
+
+        private Progress _progress;
 
         public void Load()
         {
-            Progress = new SavedProgress() { UnlockedSceneBuildIndexes = new HashSet<int>() };
+            _progress = _saveStrategy.Load();
 
             foreach (IProgressListener listener in _listeners)
-                listener.Load(Progress);
+                listener.Load(_progress);
         }
 
         public void Save()
         {
             foreach (IProgressListener listener in _listeners)
-                listener.Save(Progress);
+                listener.Save(_progress);
+
+            _saveStrategy.Save(_progress);
         }
 
         public void AddListener(IProgressListener listener) =>
