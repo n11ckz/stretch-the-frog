@@ -54,6 +54,7 @@ namespace Unified.UniversalBlur.Runtime
                 autoGenerateMips = _blurConfig.EnableMipMaps
             };
 
+        [Obsolete]
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
         {
             var cmd = CommandBufferPool.Get();

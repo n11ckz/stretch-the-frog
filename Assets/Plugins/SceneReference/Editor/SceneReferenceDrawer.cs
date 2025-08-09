@@ -43,7 +43,7 @@ namespace n11ckz.SceneReference.Editor
             {
                 string key = $"{id}-{property.propertyPath}-{foldout.name}-state";
 
-                foldout.value = EditorPrefs.GetBool(key, true);
+                foldout.value = EditorPrefs.GetBool(key, false);
                 foldout.RegisterValueChangedCallback((x) =>
                 {
                     if (x.target != foldout)
