@@ -5,9 +5,16 @@ namespace Project
 {
     public class NoAdsService : IAdsService
     {
+        private bool _hasDisplayedOnce;
+
         public UniTask TryShowInterstitialAdAsync(CancellationToken cancellationToken)
         {
-            Logger.Log("Ads should be displayed here :p");
+            if (_hasDisplayedOnce == false)
+            {
+                Logger.Log("Ads should be displayed here :p");
+                _hasDisplayedOnce = true;
+            }
+
             return UniTask.CompletedTask;
         }
     }

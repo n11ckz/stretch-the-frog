@@ -47,7 +47,8 @@ namespace Project
                 return;
 
             await SceneManager.LoadSceneAsync(sceneReference.BuildIndex, LoadSceneMode.Additive).
-                ToUniTask(cancellationToken: cancellationToken);
+                ToUniTask(cancellationToken: cancellationToken).
+                ContinueWith(() => UniTask.NextFrame(cancellationToken));
         }
 
         private async UniTask UnloadActiveSceneAsync(Action onSceneUnloaded, CancellationToken cancellationToken)

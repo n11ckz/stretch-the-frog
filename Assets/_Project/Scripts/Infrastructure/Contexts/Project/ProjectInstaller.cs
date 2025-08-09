@@ -29,7 +29,6 @@ namespace Project
 
             Container.Bind<IAdsService>().To<NoAdsService>().FromNew().AsSingle();
 
-            // TODO: fix <OnInstantiated> callback in validation mode
             Container.Bind<ILogService>().To<UnityLogService>().FromNew().AsSingle().
                 OnInstantiated<ILogService>((context, x) => Logger.Initialize(x)).NonLazy();
         }
