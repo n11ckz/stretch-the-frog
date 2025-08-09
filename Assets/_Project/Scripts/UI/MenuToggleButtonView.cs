@@ -31,7 +31,7 @@ namespace Project
             else
             {
                 _pauseService.Resume();
-                _displayView.Hide(destroyCancellationToken).Forget();
+                _displayView.Hide(false, destroyCancellationToken).Forget();
             }
         }
     }

@@ -17,21 +17,21 @@ namespace Project
             _sequence?.Complete();
             _canvasGroup.gameObject.Enable();
 
-            await _canvasGroup.DOFade(1.0f, _duration).SetEase(Ease.InOutSine).
-                WriteInField(ref _sequence).SetUpdate(true).SetLink(_canvasGroup.gameObject).
-                ToUniTask(TweenCancelBehaviour.Kill, cancellationToken);
+            await _canvasGroup.DOFade(1.0f, _duration).
+                SetEase(Ease.InOutSine).SetLink(_canvasGroup.gameObject).SetUpdate(true).
+                WriteInField(ref _sequence).ToUniTask(TweenCancelBehaviour.Kill, cancellationToken);
 
             _canvasGroup.interactable = true;
         }
 
-        public async UniTaskVoid Hide(CancellationToken cancellationToken)
+        public async UniTaskVoid Hide(bool shouldImmediately, CancellationToken cancellationToken)
         {
             _sequence?.Complete();
             _canvasGroup.interactable = false;
 
-            await _canvasGroup.DOFade(0.0f, _duration).SetEase(Ease.InOutSine).
-                WriteInField(ref _sequence).SetUpdate(true).SetLink(_canvasGroup.gameObject).
-                ToUniTask(TweenCancelBehaviour.Kill, cancellationToken);
+            await _canvasGroup.DOFade(0.0f, shouldImmediately == false ? _duration : 0.0f).
+                SetEase(Ease.InOutSine).SetLink(_canvasGroup.gameObject).SetUpdate(true).
+                WriteInField(ref _sequence).ToUniTask(TweenCancelBehaviour.Kill, cancellationToken);
 
             _canvasGroup.gameObject.Disable();
         } 

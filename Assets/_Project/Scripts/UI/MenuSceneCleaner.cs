@@ -3,7 +3,7 @@ using Zenject;
 
 namespace Project
 {
-    public class LevelCompletionView : MonoBehaviour
+    public class MenuSceneCleaner : MonoBehaviour
     {
         [SerializeField] private MenuDisplayView _menuDisplayView;
         [SerializeField] private RectTransform _buttonsHolder;
@@ -15,15 +15,15 @@ namespace Project
             _levelCycle = levelCycle;
 
         private void Awake() =>
-            _levelCycle.Completed += Show;
+            _levelCycle.Disposed += Clean;
 
         private void OnDestroy() =>
-            _levelCycle.Completed -= Show;
+            _levelCycle.Disposed -= Clean;
 
-        private void Show(bool isSuccessfully)
+        private void Clean()
         {
-            _buttonsHolder.gameObject.Disable();
-            _menuDisplayView.Show(destroyCancellationToken).
+            _buttonsHolder.gameObject.Enable();
+            _menuDisplayView.Hide(true, destroyCancellationToken).
                 Forget();
         }
     }
