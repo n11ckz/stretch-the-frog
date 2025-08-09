@@ -7,18 +7,19 @@ using Zenject;
 
 namespace Project
 {
-    [RequireComponent(typeof(BumpEffect))]
+    [RequireComponent(typeof(BumpEffect), typeof(CharacterSoundPlayer))]
     public class SlideMovement : MonoBehaviour, IMovement
     {
         public event Action<Vector3> MovedAt;
-        
-        public Direction CurrentDirection => _directionInfo.Current;
+
+        [SerializeField] private CharacterSoundPlayer _soundPlayer;
+        [SerializeField] private BumpEffect _bumpEffect;
+
+        public DirectionInfo DirectionInfo => _directionInfo;
 
         private ObstacleSensor _obstacleSensor;
         private TraceFactory _traceFactory;
         private CharacterConfig _config;
-        private BumpEffect _bumpEffect;
-
         private CancellationTokenSource _cancellationTokenSource;
         private DirectionInfo _directionInfo;
         private bool _isMoving;
@@ -31,74 +32,67 @@ namespace Project
             _config = config;
         }
 
-        private void Awake()
-        {
-            _bumpEffect = GetComponent<BumpEffect>();
+        private void Awake() =>
             CreateCancellationTokenSource();
-        }
 
         public void Move(Direction direction)
         {
-            Vector3 vectorDirection = direction.ToVector();
+            Vector3 convertedDirection = direction.ToVector();
 
-            if (CanMove(vectorDirection) == false)
+            if (CanMove(convertedDirection) == false)
                 return;
 
             if (_cancellationTokenSource.IsCancellationRequested == true)
                 CreateCancellationTokenSource();
 
             _directionInfo.Current = direction;
-            MoveAsync(vectorDirection, _cancellationTokenSource.Token).Forget();
+            MoveAsync(convertedDirection, _cancellationTokenSource.Token).Forget();
         }
 
         public void StopMove()
         {
-            CancelToken();
+            if (_cancellationTokenSource.IsCancellationRequested == false)
+            {
+                _cancellationTokenSource.Cancel();
+                _cancellationTokenSource.Dispose();
+            }
+
             _isMoving = false;
         }
 
-        private async UniTaskVoid MoveAsync(Vector3 direction, CancellationToken token)
+        private async UniTaskVoid MoveAsync(Vector3 direction, CancellationToken cancellationToken)
         {
             _isMoving = true;
 
             while (_obstacleSensor.HasObstacleAhead(transform.position, direction) == false)
             {
-                LeaveTrace();
+                LeaveTraceOnWay();
 
                 Vector3 destination = transform.position + direction;
 
-                await transform.DOMove(destination, 1.0f / _config.Speed).SetEase(_config.MoveEase).
-                    ToUniTask(TweenCancelBehaviour.CancelAwait, token);
+                await transform.DOMove(destination, 1.0f / _config.Speed).SetEase(Ease.Linear).
+                    SetLink(gameObject).ToUniTask(TweenCancelBehaviour.CancelAwait, cancellationToken);
 
                 _directionInfo.Previous = _directionInfo.Current;
                 MovedAt?.Invoke(destination);
 
-                await UniTask.WaitForEndOfFrame(this, token);
+                await UniTask.WaitForEndOfFrame(cancellationToken);
             }
-            
+
             _bumpEffect.PlayEffect(direction);
             _isMoving = false;
         }
 
-        private void LeaveTrace()
+        private void LeaveTraceOnWay()
         {
             Trace trace = _traceFactory.CreateTrace(_directionInfo);
-            trace.transform.position = transform.position.With(y: trace.PositionOffset.y);
+            trace.transform.position = transform.position;
         }
 
         private void CreateCancellationTokenSource()
         {
             _cancellationTokenSource = new CancellationTokenSource();
             _cancellationTokenSource.RegisterRaiseCancelOnDestroy(gameObject);
-        }
-
-        private void CancelToken()
-        {
-            if (_cancellationTokenSource.IsCancellationRequested == true)
-                return;
-            
-            _cancellationTokenSource.Cancel();
-            _cancellationTokenSource.Dispose();
         }
 
         private bool CanMove(Vector3 direction)

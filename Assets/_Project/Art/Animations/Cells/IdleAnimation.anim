@@ -79,7 +79,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseMap_ST.x
-    path: TeleportCell (2)/TeleportCellModel/Cell
+    path: CellTemplate (2)/Model/TeleportCell/Cell
     classID: 23
     script: {fileID: 0}
     flags: 0
@@ -145,7 +145,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseMap_ST.y
-    path: TeleportCell (2)/TeleportCellModel/Cell
+    path: CellTemplate (2)/Model/TeleportCell/Cell
     classID: 23
     script: {fileID: 0}
     flags: 0
@@ -157,8 +157,8 @@ AnimationClip:
         time: 0
         value: 0
         inSlope: 0
-        outSlope: 0
-        tangentMode: 136
+        outSlope: Infinity
+        tangentMode: 97
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -166,44 +166,44 @@ AnimationClip:
         time: 0.16666667
         value: 0.25
         inSlope: Infinity
-        outSlope: 3
-        tangentMode: 7
+        outSlope: Infinity
+        tangentMode: 103
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.33333334
         value: 0.5
-        inSlope: Infinity
-        outSlope: 3.0000002
-        tangentMode: 7
+        inSlope: 1.5000001
+        outSlope: Infinity
+        tangentMode: 97
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.5
         value: 0.75
-        inSlope: Infinity
-        outSlope: 0
-        tangentMode: 7
+        inSlope: 0
+        outSlope: Infinity
+        tangentMode: 97
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.6666667
         value: 0
-        inSlope: Infinity
+        inSlope: 0
         outSlope: 0
-        tangentMode: 7
+        tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.8333333
         value: 0
-        inSlope: Infinity
+        inSlope: 0
         outSlope: 0
-        tangentMode: 7
+        tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -211,7 +211,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseMap_ST.z
-    path: TeleportCell (2)/TeleportCellModel/Cell
+    path: CellTemplate (2)/Model/TeleportCell/Cell
     classID: 23
     script: {fileID: 0}
     flags: 0
@@ -249,6 +249,15 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.5
         value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.6666667
+        value: -0.5
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -256,20 +265,11 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.6666667
-        value: -0.5
-        inSlope: Infinity
-        outSlope: 0
-        tangentMode: 7
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
         time: 0.8333333
-        value: -0.5
+        value: 0
         inSlope: Infinity
-        outSlope: 0
-        tangentMode: 7
+        outSlope: Infinity
+        tangentMode: 103
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -277,7 +277,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseMap_ST.w
-    path: TeleportCell (2)/TeleportCellModel/Cell
+    path: CellTemplate (2)/Model/TeleportCell/Cell
     classID: 23
     script: {fileID: 0}
     flags: 0
@@ -343,7 +343,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseMap_ST.x
-    path: TeleportCell (1)/TeleportCellModel/Cell
+    path: CellTemplate (1)/Model/TeleportCell/Cell
     classID: 23
     script: {fileID: 0}
     flags: 0
@@ -409,7 +409,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseMap_ST.y
-    path: TeleportCell (1)/TeleportCellModel/Cell
+    path: CellTemplate (1)/Model/TeleportCell/Cell
     classID: 23
     script: {fileID: 0}
     flags: 0
@@ -430,17 +430,17 @@ AnimationClip:
         time: 0.16666667
         value: 0.25
         inSlope: Infinity
-        outSlope: 3
-        tangentMode: 7
+        outSlope: Infinity
+        tangentMode: 103
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.33333334
         value: 0.5
-        inSlope: Infinity
-        outSlope: 3.0000002
-        tangentMode: 7
+        inSlope: 1.5000001
+        outSlope: 1.5000001
+        tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -448,26 +448,26 @@ AnimationClip:
         time: 0.5
         value: 0.75
         inSlope: Infinity
-        outSlope: 0
-        tangentMode: 7
+        outSlope: Infinity
+        tangentMode: 103
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.6666667
         value: 0
-        inSlope: Infinity
+        inSlope: 0
         outSlope: 0
-        tangentMode: 7
+        tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.8333333
         value: 0
-        inSlope: Infinity
+        inSlope: 0
         outSlope: 0
-        tangentMode: 7
+        tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -475,7 +475,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseMap_ST.z
-    path: TeleportCell (1)/TeleportCellModel/Cell
+    path: CellTemplate (1)/Model/TeleportCell/Cell
     classID: 23
     script: {fileID: 0}
     flags: 0
@@ -514,26 +514,26 @@ AnimationClip:
         time: 0.5
         value: 0
         inSlope: 0
-        outSlope: 0
-        tangentMode: 136
+        outSlope: Infinity
+        tangentMode: 97
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.6666667
         value: -0.5
-        inSlope: Infinity
+        inSlope: 0
         outSlope: 0
-        tangentMode: 7
+        tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.8333333
-        value: -0.5
+        value: 0
         inSlope: Infinity
-        outSlope: 0
-        tangentMode: 7
+        outSlope: Infinity
+        tangentMode: 103
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -541,7 +541,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseMap_ST.w
-    path: TeleportCell (1)/TeleportCellModel/Cell
+    path: CellTemplate (1)/Model/TeleportCell/Cell
     classID: 23
     script: {fileID: 0}
     flags: 0
@@ -554,7 +554,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 1479671341
+      path: 4160256239
       attribute: 740047457
       script: {fileID: 0}
       typeID: 23
@@ -563,7 +563,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 1479671341
+      path: 4160256239
       attribute: 1008482913
       script: {fileID: 0}
       typeID: 23
@@ -572,7 +572,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 1843153022
+      path: 95393047
       attribute: 740047457
       script: {fileID: 0}
       typeID: 23
@@ -581,7 +581,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 1843153022
+      path: 95393047
       attribute: 1008482913
       script: {fileID: 0}
       typeID: 23
@@ -590,7 +590,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 1479671341
+      path: 4160256239
       attribute: 203176545
       script: {fileID: 0}
       typeID: 23
@@ -599,7 +599,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 1479671341
+      path: 4160256239
       attribute: 471612001
       script: {fileID: 0}
       typeID: 23
@@ -608,7 +608,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 1843153022
+      path: 95393047
       attribute: 203176545
       script: {fileID: 0}
       typeID: 23
@@ -617,7 +617,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 1843153022
+      path: 95393047
       attribute: 471612001
       script: {fileID: 0}
       typeID: 23
@@ -709,7 +709,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseMap_ST.x
-    path: TeleportCell (2)/TeleportCellModel/Cell
+    path: CellTemplate (2)/Model/TeleportCell/Cell
     classID: 23
     script: {fileID: 0}
     flags: 0
@@ -775,7 +775,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseMap_ST.y
-    path: TeleportCell (2)/TeleportCellModel/Cell
+    path: CellTemplate (2)/Model/TeleportCell/Cell
     classID: 23
     script: {fileID: 0}
     flags: 0
@@ -787,8 +787,8 @@ AnimationClip:
         time: 0
         value: 0
         inSlope: 0
-        outSlope: 0
-        tangentMode: 136
+        outSlope: Infinity
+        tangentMode: 97
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -796,44 +796,44 @@ AnimationClip:
         time: 0.16666667
         value: 0.25
         inSlope: Infinity
-        outSlope: 3
-        tangentMode: 7
+        outSlope: Infinity
+        tangentMode: 103
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.33333334
         value: 0.5
-        inSlope: Infinity
-        outSlope: 3.0000002
-        tangentMode: 7
+        inSlope: 1.5000001
+        outSlope: Infinity
+        tangentMode: 97
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.5
         value: 0.75
-        inSlope: Infinity
-        outSlope: 0
-        tangentMode: 7
+        inSlope: 0
+        outSlope: Infinity
+        tangentMode: 97
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.6666667
         value: 0
-        inSlope: Infinity
+        inSlope: 0
         outSlope: 0
-        tangentMode: 7
+        tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.8333333
         value: 0
-        inSlope: Infinity
+        inSlope: 0
         outSlope: 0
-        tangentMode: 7
+        tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -841,7 +841,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseMap_ST.z
-    path: TeleportCell (2)/TeleportCellModel/Cell
+    path: CellTemplate (2)/Model/TeleportCell/Cell
     classID: 23
     script: {fileID: 0}
     flags: 0
@@ -879,6 +879,15 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.5
         value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.6666667
+        value: -0.5
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -886,20 +895,11 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.6666667
-        value: -0.5
-        inSlope: Infinity
-        outSlope: 0
-        tangentMode: 7
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
         time: 0.8333333
-        value: -0.5
+        value: 0
         inSlope: Infinity
-        outSlope: 0
-        tangentMode: 7
+        outSlope: Infinity
+        tangentMode: 103
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -907,7 +907,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseMap_ST.w
-    path: TeleportCell (2)/TeleportCellModel/Cell
+    path: CellTemplate (2)/Model/TeleportCell/Cell
     classID: 23
     script: {fileID: 0}
     flags: 0
@@ -973,7 +973,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseMap_ST.x
-    path: TeleportCell (1)/TeleportCellModel/Cell
+    path: CellTemplate (1)/Model/TeleportCell/Cell
     classID: 23
     script: {fileID: 0}
     flags: 0
@@ -1039,7 +1039,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseMap_ST.y
-    path: TeleportCell (1)/TeleportCellModel/Cell
+    path: CellTemplate (1)/Model/TeleportCell/Cell
     classID: 23
     script: {fileID: 0}
     flags: 0
@@ -1060,17 +1060,17 @@ AnimationClip:
         time: 0.16666667
         value: 0.25
         inSlope: Infinity
-        outSlope: 3
-        tangentMode: 7
+        outSlope: Infinity
+        tangentMode: 103
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.33333334
         value: 0.5
-        inSlope: Infinity
-        outSlope: 3.0000002
-        tangentMode: 7
+        inSlope: 1.5000001
+        outSlope: 1.5000001
+        tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -1078,26 +1078,26 @@ AnimationClip:
         time: 0.5
         value: 0.75
         inSlope: Infinity
-        outSlope: 0
-        tangentMode: 7
+        outSlope: Infinity
+        tangentMode: 103
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.6666667
         value: 0
-        inSlope: Infinity
+        inSlope: 0
         outSlope: 0
-        tangentMode: 7
+        tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.8333333
         value: 0
-        inSlope: Infinity
+        inSlope: 0
         outSlope: 0
-        tangentMode: 7
+        tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -1105,7 +1105,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseMap_ST.z
-    path: TeleportCell (1)/TeleportCellModel/Cell
+    path: CellTemplate (1)/Model/TeleportCell/Cell
     classID: 23
     script: {fileID: 0}
     flags: 0
@@ -1144,26 +1144,26 @@ AnimationClip:
         time: 0.5
         value: 0
         inSlope: 0
-        outSlope: 0
-        tangentMode: 136
+        outSlope: Infinity
+        tangentMode: 97
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.6666667
         value: -0.5
-        inSlope: Infinity
+        inSlope: 0
         outSlope: 0
-        tangentMode: 7
+        tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.8333333
-        value: -0.5
+        value: 0
         inSlope: Infinity
-        outSlope: 0
-        tangentMode: 7
+        outSlope: Infinity
+        tangentMode: 103
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -1171,7 +1171,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseMap_ST.w
-    path: TeleportCell (1)/TeleportCellModel/Cell
+    path: CellTemplate (1)/Model/TeleportCell/Cell
     classID: 23
     script: {fileID: 0}
     flags: 0

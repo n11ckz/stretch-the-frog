@@ -6,52 +6,42 @@ namespace Project
 {
     public class TraceFactory : IInitializable
     {
-        private const string ParentName = "Traces";
+        private readonly TraceConfig _traceConfig;
+        
+        private IReadOnlyDictionary<DirectionInfo, Quaternion> _rotationMap;
+        private MaterialPropertyBlock _materialPropertyBlock;
+        private Transform _traceContainer;
 
-        private readonly Dictionary<DirectionInfo, TraceSelectionRule> _cachedRules = new Dictionary<DirectionInfo, TraceSelectionRule>();
-        private readonly MaterialPropertyBlock _materialPropertyBlock = new MaterialPropertyBlock();
-
-        private readonly IAssetLoader _assetLoader;
-        private readonly ILogger _logger;
-
-        private TraceConfig _config;
-        private Transform _parent;
-
-        public TraceFactory(IAssetLoader assetLoader, ILogger logger)
-        {
-            _assetLoader = assetLoader;
-            _logger = logger;
-        }
+        public TraceFactory(TraceConfig traceConfig) =>
+            _traceConfig = traceConfig;
 
         public void Initialize()
         {
-            _config = _assetLoader.Load<TraceConfig>(AssetPaths.TraceConfigPath);
-
-            foreach (TraceSelectionRule rule in _config.SelectionRules)
-                _cachedRules.TryAdd(rule.DirectionInfo, rule);
+            _rotationMap = _traceConfig.GetRotationMap();
+            _materialPropertyBlock = new MaterialPropertyBlock();
         }
 
-        public Trace CreateTrace(DirectionInfo directionInfo)
+        public Trace CreateTrace(DirectionInfo info)
         {
-            if (_parent == null)
-                _parent = new GameObject(ParentName).transform;
+            SetupContainer();
 
-            Quaternion rotation = GetTraceRotation(directionInfo);
-            Trace trace = Object.Instantiate(_config.Prefab, Vector3.down, rotation, _parent);
-            trace.Initialize(_materialPropertyBlock);
+            if (_rotationMap.TryGetValue(info, out Quaternion rotation) == false)
+                Logger.Log($"Can't find rule! From <{info.Previous}> to <{info.Current}>", LogMode.Warning);
+
+            Trace trace = Object.Instantiate(_traceConfig.Prefab, Vector3.down, Quaternion.identity, _traceContainer);
+            trace.Initialize(rotation, _materialPropertyBlock);
 
             return trace;
         }
 
-        private Quaternion GetTraceRotation(DirectionInfo directionInfo)
+        private void SetupContainer()
         {
-            if (_cachedRules.TryGetValue(directionInfo, out TraceSelectionRule selectionRule) == false)
-            {
-                _logger.Log($"Can't find the rule! From <{directionInfo.Previous}> to <{directionInfo.Current}> direction");
-                return Quaternion.identity;
-            }
+#if UNITY_EDITOR
+            if (_traceContainer != null)
+                return;
 
-            return selectionRule.Rotation;
+            _traceContainer = new GameObject(_traceConfig.ContainerName).transform;
+#endif
         }
     }
 }

@@ -96,9 +96,9 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.4
         value: 1
-        inSlope: 0
+        inSlope: Infinity
         outSlope: 0
-        tangentMode: 136
+        tangentMode: 7
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -106,7 +106,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseMap_ST.x
-    path: FrogFaceModel/Face
+    path: Model/CharacterFrogFace/Face
     classID: 23
     script: {fileID: 0}
     flags: 0
@@ -189,9 +189,9 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.4
         value: 1
-        inSlope: 0
+        inSlope: Infinity
         outSlope: 0
-        tangentMode: 136
+        tangentMode: 7
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -199,7 +199,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseMap_ST.y
-    path: FrogFaceModel/Face
+    path: Model/CharacterFrogFace/Face
     classID: 23
     script: {fileID: 0}
     flags: 0
@@ -220,7 +220,7 @@ AnimationClip:
         time: 0.05
         value: 0.25
         inSlope: Infinity
-        outSlope: 3
+        outSlope: 5
         tangentMode: 7
         weightedMode: 0
         inWeight: 0.33333334
@@ -229,7 +229,7 @@ AnimationClip:
         time: 0.1
         value: 0.5
         inSlope: Infinity
-        outSlope: 3.0000002
+        outSlope: 4.9999995
         tangentMode: 7
         weightedMode: 0
         inWeight: 0.33333334
@@ -238,17 +238,17 @@ AnimationClip:
         time: 0.15
         value: 0.75
         inSlope: Infinity
-        outSlope: 0
-        tangentMode: 7
+        outSlope: Infinity
+        tangentMode: 103
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.2
         value: 0
-        inSlope: Infinity
-        outSlope: 0
-        tangentMode: 7
+        inSlope: 0
+        outSlope: Infinity
+        tangentMode: 97
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -256,8 +256,8 @@ AnimationClip:
         time: 0.25
         value: 0.75
         inSlope: Infinity
-        outSlope: 0
-        tangentMode: 7
+        outSlope: Infinity
+        tangentMode: 103
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -265,7 +265,7 @@ AnimationClip:
         time: 0.3
         value: 0.5
         inSlope: Infinity
-        outSlope: 3.0000002
+        outSlope: 4.9999995
         tangentMode: 7
         weightedMode: 0
         inWeight: 0.33333334
@@ -274,7 +274,7 @@ AnimationClip:
         time: 0.35
         value: 0.25
         inSlope: Infinity
-        outSlope: 3
+        outSlope: 5
         tangentMode: 7
         weightedMode: 0
         inWeight: 0.33333334
@@ -292,7 +292,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseMap_ST.z
-    path: FrogFaceModel/Face
+    path: Model/CharacterFrogFace/Face
     classID: 23
     script: {fileID: 0}
     flags: 0
@@ -375,9 +375,9 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.4
         value: 0
-        inSlope: 0
+        inSlope: Infinity
         outSlope: 0
-        tangentMode: 136
+        tangentMode: 7
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -385,7 +385,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseMap_ST.w
-    path: FrogFaceModel/Face
+    path: Model/CharacterFrogFace/Face
     classID: 23
     script: {fileID: 0}
     flags: 0
@@ -398,25 +398,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 3302208913
-      attribute: 740047457
-      script: {fileID: 0}
-      typeID: 23
-      customType: 22
-      isPPtrCurve: 0
-      isIntCurve: 0
-      isSerializeReferenceCurve: 0
-    - serializedVersion: 2
-      path: 3302208913
-      attribute: 1008482913
-      script: {fileID: 0}
-      typeID: 23
-      customType: 22
-      isPPtrCurve: 0
-      isIntCurve: 0
-      isSerializeReferenceCurve: 0
-    - serializedVersion: 2
-      path: 3302208913
+      path: 3510340635
       attribute: 203176545
       script: {fileID: 0}
       typeID: 23
@@ -425,8 +407,26 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 3302208913
+      path: 3510340635
       attribute: 471612001
+      script: {fileID: 0}
+      typeID: 23
+      customType: 22
+      isPPtrCurve: 0
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    - serializedVersion: 2
+      path: 3510340635
+      attribute: 740047457
+      script: {fileID: 0}
+      typeID: 23
+      customType: 22
+      isPPtrCurve: 0
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    - serializedVersion: 2
+      path: 3510340635
+      attribute: 1008482913
       script: {fileID: 0}
       typeID: 23
       customType: 22
@@ -534,9 +534,9 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.4
         value: 1
-        inSlope: 0
+        inSlope: Infinity
         outSlope: 0
-        tangentMode: 136
+        tangentMode: 7
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -544,7 +544,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseMap_ST.x
-    path: FrogFaceModel/Face
+    path: Model/CharacterFrogFace/Face
     classID: 23
     script: {fileID: 0}
     flags: 0
@@ -627,9 +627,9 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.4
         value: 1
-        inSlope: 0
+        inSlope: Infinity
         outSlope: 0
-        tangentMode: 136
+        tangentMode: 7
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -637,7 +637,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseMap_ST.y
-    path: FrogFaceModel/Face
+    path: Model/CharacterFrogFace/Face
     classID: 23
     script: {fileID: 0}
     flags: 0
@@ -658,7 +658,7 @@ AnimationClip:
         time: 0.05
         value: 0.25
         inSlope: Infinity
-        outSlope: 3
+        outSlope: 5
         tangentMode: 7
         weightedMode: 0
         inWeight: 0.33333334
@@ -667,7 +667,7 @@ AnimationClip:
         time: 0.1
         value: 0.5
         inSlope: Infinity
-        outSlope: 3.0000002
+        outSlope: 4.9999995
         tangentMode: 7
         weightedMode: 0
         inWeight: 0.33333334
@@ -676,17 +676,17 @@ AnimationClip:
         time: 0.15
         value: 0.75
         inSlope: Infinity
-        outSlope: 0
-        tangentMode: 7
+        outSlope: Infinity
+        tangentMode: 103
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.2
         value: 0
-        inSlope: Infinity
-        outSlope: 0
-        tangentMode: 7
+        inSlope: 0
+        outSlope: Infinity
+        tangentMode: 97
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -694,8 +694,8 @@ AnimationClip:
         time: 0.25
         value: 0.75
         inSlope: Infinity
-        outSlope: 0
-        tangentMode: 7
+        outSlope: Infinity
+        tangentMode: 103
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -703,7 +703,7 @@ AnimationClip:
         time: 0.3
         value: 0.5
         inSlope: Infinity
-        outSlope: 3.0000002
+        outSlope: 4.9999995
         tangentMode: 7
         weightedMode: 0
         inWeight: 0.33333334
@@ -712,7 +712,7 @@ AnimationClip:
         time: 0.35
         value: 0.25
         inSlope: Infinity
-        outSlope: 3
+        outSlope: 5
         tangentMode: 7
         weightedMode: 0
         inWeight: 0.33333334
@@ -730,7 +730,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseMap_ST.z
-    path: FrogFaceModel/Face
+    path: Model/CharacterFrogFace/Face
     classID: 23
     script: {fileID: 0}
     flags: 0
@@ -813,9 +813,9 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.4
         value: 0
-        inSlope: 0
+        inSlope: Infinity
         outSlope: 0
-        tangentMode: 136
+        tangentMode: 7
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -823,7 +823,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseMap_ST.w
-    path: FrogFaceModel/Face
+    path: Model/CharacterFrogFace/Face
     classID: 23
     script: {fileID: 0}
     flags: 0

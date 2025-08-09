@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98c2212ab2d6d604c8bb3c0dd195c872, type: 3}
+  m_Script: {fileID: 11500000, guid: add478b027f432345a85011f4ae2f361, type: 3}
   m_Name: SpeedUpSlideCharacterConfig
   m_EditorClassIdentifier: 
-  <Speed>k__BackingField: 24
-  <MoveEase>k__BackingField: 1
+  <Speed>k__BackingField: 16

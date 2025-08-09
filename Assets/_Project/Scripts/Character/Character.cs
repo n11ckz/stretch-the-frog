@@ -4,24 +4,23 @@ using Zenject;
 
 namespace Project
 {
-    [SelectionBase]
     public class Character : MonoBehaviour, ICellOccupant
     {
         public event Action Stuck;
 
         public Transform Transform => transform;
 
-        private IInput _input;
         private IMovement _movement;
-        private ObstacleSensor _sensor;
+        private IInput _input;
         private CellMap _cellMap;
+        private ObstacleSensor _obstacleSensor;
 
         [Inject]
-        private void Construct(IInput input, ObstacleSensor sensor, CellMap cellMap)
+        private void Construct(IInput input, CellMap cellMap, ObstacleSensor obstacleSensor)
         {
             _input = input;
-            _sensor = sensor;
             _cellMap = cellMap;
+            _obstacleSensor = obstacleSensor;
         }
 
         private void Awake()
@@ -45,7 +44,7 @@ namespace Project
         {
             _cellMap.OccupyCellAt(worldPosition, this);
 
-            if (_sensor.IsStuck(transform.position) == true)
+            if (_obstacleSensor.IsStuck(Transform.position))
                 Stuck?.Invoke();
         }
     }

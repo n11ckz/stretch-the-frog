@@ -1,0 +1,11 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:VisualElement name="root-element" style="flex-grow: 0;">
+        <uie:ObjectField label="Script" name="script-field" binding-path="m_Script" enabled="false" class="unity-base-field__aligned" />
+        <ui:VisualElement name="rule-element" style="flex-grow: 0; flex-direction: row;">
+            <ui:EnumField value="None" type="Project.Direction, Assembly-CSharp" name="from-field" tooltip="Choose direction from which character has moved." style="width: 45%; margin-right: 0; margin-left: 3px;" />
+            <ui:Label text="➜" name="arrow-label" enabled="true" style="-unity-text-align: middle-center; width: 10%; -unity-font-style: normal;" />
+            <ui:EnumField value="None" type="Project.Direction, Assembly-CSharp" name="to-field" tooltip="Choose direction in which character will move." style="width: 45%; margin-left: -1px; margin-right: 0; padding-left: 0;" />
+        </ui:VisualElement>
+        <ui:Vector3Field label="Euler Rotation" name="rotation-field" binding-path="&lt;EulerRotation&gt;k__BackingField" tooltip="Rotation of trace game object." class="unity-base-field__aligned" />
+    </ui:VisualElement>
+</ui:UXML>

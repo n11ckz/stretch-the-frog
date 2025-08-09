@@ -3,13 +3,25 @@ using UnityEngine;
 
 namespace Project
 {
-    [CreateAssetMenu(menuName = "Configs/Trace/" + nameof(TraceConfig), fileName = nameof(TraceConfig))]
+    [CreateAssetMenu(fileName = nameof(TraceConfig), menuName = "Configs/Trace/" + nameof(TraceConfig))]
     public class TraceConfig : ScriptableObject
     {
         [field: SerializeField] public Trace Prefab { get; private set; }
+        [field: SerializeField] public string ContainerName { get; private set; }
 
-        [SerializeField] private List<TraceSelectionRule> _selectionRules = new List<TraceSelectionRule>();
+        [SerializeField] private List<TraceChoiceRule> _rules = new List<TraceChoiceRule>();
 
-        public IEnumerable<TraceSelectionRule> SelectionRules => _selectionRules;
+        public IReadOnlyDictionary<DirectionInfo, Quaternion> GetRotationMap()
+        {
+            Dictionary<DirectionInfo, Quaternion> rotationMap = new Dictionary<DirectionInfo, Quaternion>();
+
+            foreach (TraceChoiceRule rule in _rules)
+            {
+                Quaternion rotation = Quaternion.Euler(rule.EulerRotation);
+                rotationMap.TryAdd(rule.Info, rotation);
+            }
+
+            return rotationMap;
+        }
     }
 }

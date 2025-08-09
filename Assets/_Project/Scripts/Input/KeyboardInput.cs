@@ -8,32 +8,32 @@ namespace Project
     {
         public event Action<Direction> DirectionReceived;
 
-        private readonly PauseHandler _pauseHandler;
+        private readonly PauseService _pauseService;
 
-        public KeyboardInput(PauseHandler pauseHandler) =>
-            _pauseHandler = pauseHandler;
+        public KeyboardInput(PauseService pauseService) =>
+            _pauseService = pauseService;
 
         public void Tick()
         {
-            if (_pauseHandler.IsPaused == true)
+            if (_pauseService.IsPaused == true)
                 return;
-            
+
             ReadKeys();
         }
 
         private void ReadKeys()
         {
-            if (Input.GetKeyDown(KeyCode.LeftArrow) == true)
-                DirectionReceived?.Invoke(Direction.Left);
-
-            if (Input.GetKeyDown(KeyCode.RightArrow) == true)
-                DirectionReceived?.Invoke(Direction.Right);
-
             if (Input.GetKeyDown(KeyCode.UpArrow) == true)
                 DirectionReceived?.Invoke(Direction.Up);
 
             if (Input.GetKeyDown(KeyCode.DownArrow) == true)
                 DirectionReceived?.Invoke(Direction.Down);
+
+            if (Input.GetKeyDown(KeyCode.LeftArrow) == true)
+                DirectionReceived?.Invoke(Direction.Left);
+
+            if (Input.GetKeyDown(KeyCode.RightArrow) == true)
+                DirectionReceived?.Invoke(Direction.Right);
         }
     }
 }

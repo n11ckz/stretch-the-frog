@@ -8,24 +8,24 @@ namespace Project
     {
         private const int PrimaryTouchIndex = 0;
         private const int SwipeThreshold = 125;
-
+        
         public event Action<Direction> DirectionReceived;
 
-        private readonly PauseHandler _pauseHandler;
+        private readonly PauseService _pauseService;
 
-        private bool HasAnyTouches => Input.touchCount > 0;
+        public bool HasAnyTouches => Input.touchCount > 0;
 
-        private Vector2 _initialTouchPosition;
+        private Vector2 _firstTouchPosition;
         private bool _isSwiping;
 
-        public TouchscreenInput(PauseHandler pauseHandler) =>
-            _pauseHandler = pauseHandler;
+        public TouchscreenInput(PauseService pauseService) =>
+            _pauseService = pauseService;
 
         public void Tick()
         {
-            if (_pauseHandler.IsPaused == true)
+            if (_pauseService.IsPaused == true)
                 return;
-            
+
             ReadSwipe();
         }
 
@@ -43,15 +43,15 @@ namespace Project
                 Swipe(touch);
         }
 
-        private void StartSwipe(Vector2 initialTouchPosition)
+        private void StartSwipe(Vector2 firstTouchPosition)
         {
-            _initialTouchPosition = initialTouchPosition;
+            _firstTouchPosition = firstTouchPosition;
             _isSwiping = true;
         }
 
         private void Swipe(Touch touch)
         {
-            Vector2 delta = touch.position - _initialTouchPosition;
+            Vector2 delta = touch.position - _firstTouchPosition;
 
             if (IsThresholdReached(delta.sqrMagnitude) == false)
                 return;

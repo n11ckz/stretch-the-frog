@@ -1,0 +1,10 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Plugins/SceneReference/Editor/Tree/AlignedFieldStyleSheet.uss?fileID=7433441132597879392&amp;guid=b60ae6fea4f965149839d07e46a7caf2&amp;type=3#AlignedFieldStyleSheet" />
+    <ui:Foldout text="Display Name" name="root-foldout" value="true" usage-hints="None" style="margin-left: 0;">
+        <uie:ObjectField label="Scene Asset" allow-scene-objects="false" type="UnityEditor.SceneAsset, UnityEditor.CoreModule" binding-path="_sceneAsset" name="scene-asset-field" class="unity-base-field__aligned" />
+        <ui:Foldout text="Scene Info" name="data-foldout" value="true" style="padding-left: 0; margin-left: 0; display: flex; visibility: visible;">
+            <ui:TextField label="Name" name="name-field" enabled="false" binding-path="&lt;Name&gt;k__BackingField" focusable="false" value="Undefined Scene Asset" placeholder-text="Undefined Scene Asset" password="false" class="unity-base-field__aligned" />
+            <ui:IntegerField label="Build Index" value="-1" name="build-index-field" enabled="false" binding-path="&lt;BuildIndex&gt;k__BackingField" focusable="false" class="unity-base-field__aligned" />
+        </ui:Foldout>
+    </ui:Foldout>
+</ui:UXML>

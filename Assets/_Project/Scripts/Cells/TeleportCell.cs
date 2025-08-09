@@ -8,39 +8,36 @@ namespace Project
         [SerializeField] private TeleportCell _anotherCell;
 
         private TraceFactory _traceFactory;
-        private bool _isDeactivated;
 
         [Inject]
-        private void Construct(TraceFactory traceFactory) =>
-            _traceFactory = traceFactory;
-
-        public override void Occupy(ICellOccupant occupant)
+        private void Construct(TraceFactory traceFactory)
         {
-            base.Occupy(occupant);
-
-            if (_isDeactivated == true)
-                return;
-
-            _anotherCell.Deactivate();
-            _anotherCell.Occupy(occupant);
-
-            occupant.Transform.position = _anotherCell.transform.position;
-
-            LeaveTraceOnCell(occupant);
+            _traceFactory = traceFactory;
+            // TODO: sound player
         }
 
-        public void Deactivate() =>
-            _isDeactivated = true;
-
-        private void LeaveTraceOnCell(ICellOccupant occupant)
+        public override void Occupy(ICellOccupant cellOccupant)
         {
-            if (occupant.Transform.TryGetComponent(out IMovement movement) == false)
+            base.Occupy(cellOccupant);
+
+            if (enabled == false)
                 return;
 
-            DirectionInfo directionInfo = new DirectionInfo() { Current = movement.CurrentDirection };
-            Trace trace = _traceFactory.CreateTrace(directionInfo);
+            _anotherCell.enabled = false;
+            _anotherCell.Occupy(cellOccupant);
 
-            trace.transform.position = transform.position.With(y: trace.PositionOffset.y);
+            LeaveTrace(cellOccupant);
+
+            cellOccupant.Transform.position = _anotherCell.transform.position;
+        }
+
+        private void LeaveTrace(ICellOccupant cellOccupant)
+        {
+            if (cellOccupant.Transform.TryGetComponent(out IMovement movement) == false)
+                return;
+
+            Trace trace = _traceFactory.CreateTrace(movement.DirectionInfo);
+            trace.transform.position = cellOccupant.Transform.position;
         }
     }
 }

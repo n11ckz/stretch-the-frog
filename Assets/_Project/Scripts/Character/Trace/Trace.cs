@@ -2,17 +2,14 @@ using UnityEngine;
 
 namespace Project
 {
-    [SelectionBase, RequireComponent(typeof(BoxCollider), typeof(GPUInstancingEnabler))]
-    public class Trace : MonoBehaviour 
+    [SelectionBase]
+    public class Trace : MonoBehaviour
     {
-        private GPUInstancingEnabler _instancingEnabler;
+        [SerializeField] private Transform _model;
 
-        public Vector3 PositionOffset => transform.position.With(y: transform.localScale.y / 2);
-
-        public void Initialize(MaterialPropertyBlock materialPropertyBlock)
+        public void Initialize(Quaternion rotation, MaterialPropertyBlock materialPropertyBlock)
         {
-            _instancingEnabler = GetComponent<GPUInstancingEnabler>();
-            _instancingEnabler.Enable(materialPropertyBlock);
+            _model.rotation = rotation;
         }
     }
 }

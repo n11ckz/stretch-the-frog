@@ -7,7 +7,7 @@ namespace Project
     {
         public event Action<Vector3> MovedAt;
 
-        public Direction CurrentDirection { get; }
+        public DirectionInfo DirectionInfo { get; }
 
         public void Move(Direction direction);
         public void StopMove();
