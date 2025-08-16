@@ -9,11 +9,11 @@ EditorBuildSettings:
     path: Assets/_Project/Scenes/BootstrapScene.unity
     guid: 7b0b73c225c8d7346a9fb4f0c7be6f39
   - enabled: 1
-    path: Assets/_Project/Scenes/TestingScene.unity
-    guid: d4cf5d1c82997d74ea4940266e3ee8b5
-  - enabled: 1
     path: Assets/_Project/Scenes/OverlayMenuScene.unity
     guid: c3183bf2416f4fc49bf57b21ce8fdbf8
+  - enabled: 1
+    path: Assets/_Project/Scenes/TestingScene.unity
+    guid: d4cf5d1c82997d74ea4940266e3ee8b5
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

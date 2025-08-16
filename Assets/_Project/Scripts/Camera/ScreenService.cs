@@ -8,8 +8,6 @@ namespace Project
     {
         public event Action ResolutionChanged;
 
-        public bool IsLandscapeResolution => Screen.width >= Screen.height;
-
         private float _lastWidth;
         private float _lastHeight;
 

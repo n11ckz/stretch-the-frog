@@ -1,3 +1,4 @@
+using Alchemy.Inspector;
 using UnityEngine;
 using Zenject;
 
@@ -6,33 +7,45 @@ namespace Project
     [RequireComponent(typeof(Camera))]
     public class CameraProjectionScaler : MonoBehaviour
     {
-        private const float Offset = 0.001f;
+        private const float OrthographicSizeConverter = 0.5f;
 
-        [SerializeField] private Camera _camera;
+        [SerializeField] private Camera _mainCamera;
+        [SerializeField] private LevelBorders _levelBorders;
 
-        [SerializeField] private OrthographicSizeData _landscapeData;
-        [SerializeField] private OrthographicSizeData _portraitData;
+        [SerializeField] private Vector3 _scopeOffset;
 
         private ScreenService _screenService;
+        private Bounds _cachedBounds;
 
         [Inject]
         private void Construct(ScreenService screenService) =>
             _screenService = screenService;
 
         private void Awake() =>
-            _screenService.ResolutionChanged += Adjust;
+            _screenService.ResolutionChanged += AdjustOrthographicSize;
 
         private void Start() =>
-            Adjust();
+            Initialize();
 
         private void OnDestroy() =>
-            _screenService.ResolutionChanged -= Adjust;
+            _screenService.ResolutionChanged -= AdjustOrthographicSize;
 
-        private void Adjust()
+        [Button]
+        private void Initialize()
         {
-            OrthographicSizeData data = _screenService.IsLandscapeResolution == true ? _landscapeData : _portraitData;
-            float orthographicSize = Mathf.Lerp(data.Width / _camera.aspect, data.Size, data.Match) + Offset;
-            _camera.orthographicSize = orthographicSize;
+            _cachedBounds = _levelBorders.CalculateBounds();
+            _mainCamera.transform.position = _cachedBounds.center.
+                With(y: _mainCamera.transform.position.y);
+            AdjustOrthographicSize();
+        }
+
+        private void AdjustOrthographicSize()
+        {
+            Bounds expandedBounds = _cachedBounds.ExpandAndReturnCopy(_scopeOffset);
+            float width = expandedBounds.size.x / _mainCamera.aspect;
+            float height = expandedBounds.size.z;
+
+            _mainCamera.orthographicSize = Mathf.Max(width, height) * OrthographicSizeConverter;
         }
     }
 }
